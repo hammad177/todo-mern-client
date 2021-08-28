@@ -11,10 +11,12 @@ const TodoApp = () => {
 	const [todos, setTodos] = useState([]);
 	const [loading, setLoading] = useState(false);
 
+	const API = process.env.REACT_APP_API_URL;
+
 	useEffect(() => {
 		const getTodos = async () => {
 			try {
-				const todosList = await axios.get('/todo');
+				const todosList = await axios.get(`${API}/todo`);
 				setTodos(todosList.data);
 			} catch (err) {
 				console.log('Error to get todos', err);

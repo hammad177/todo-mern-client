@@ -10,6 +10,8 @@ const Input = ({ setLoading }) => {
 	const [error, setError] = useState(null);
 	const [errorText, setErrorText] = useState('');
 
+	const API = process.env.REACT_APP_API_URL;
+
 	const saveOnPressEnter = (e) => {
 		if (e.key === 'Enter') {
 			postTodo();
@@ -19,7 +21,7 @@ const Input = ({ setLoading }) => {
 		if (inputValue !== '') {
 			setLoading(true);
 			try {
-				await axios.post('/todo', { todo: inputValue.trim() });
+				await axios.post(`${API}/todo`, { todo: inputValue.trim() });
 				setInputValue('');
 				setErrorText('');
 				setError(false);

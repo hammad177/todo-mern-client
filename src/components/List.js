@@ -14,10 +14,12 @@ const List = ({ val, setLoading }) => {
 	const [error, setError] = useState(false);
 	const [errorText, setErrorText] = useState('');
 
+	const API = process.env.REACT_APP_API_URL;
+
 	const deleteTodo = async (todoId) => {
 		setLoading(true);
 		try {
-			await axios.delete(`/todo/${todoId}`);
+			await axios.delete(`${API}/todo/${todoId}`);
 			setLoading(false);
 		} catch (err) {
 			setLoading(false);
@@ -27,7 +29,7 @@ const List = ({ val, setLoading }) => {
 
 	const editTodo = async () => {
 		try {
-			await axios.patch(`/todo/${editId}`, {
+			await axios.patch(`${API}/todo/${editId}`, {
 				todo: editValue,
 			});
 			setEditId(null);
